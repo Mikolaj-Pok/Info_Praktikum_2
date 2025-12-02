@@ -136,7 +136,14 @@ std::unique_ptr<Fahrzeug> Weg::pAbgabe(const Fahrzeug& gesuchtesFzg)
 		//it: Liefert die Adresse bzw. den Iterator
 		//*it: Liefert den Zeiger bzw. den unique_ptr
 		//**it: Liefert den Wert bzw. das Objekt hier, Dereferenziert Iterator und Smart Pointer
-		if(gesuchtesFzg == (**it))
+
+   		//falls der Iterator auf einen nullptr trifft, weil ein Fahrzeug aus der Liste entfernt wurde und eine "Leiche" hinterlassen hat (CRASH)
+   		if (*it== nullptr)
+   		{
+   			continue;
+   		}
+
+   		if(gesuchtesFzg == (**it))
 		{
 			//falls gefunden, speichere das Fahrzeug in einer temporären lokalen Variable
 			auto temp_unique_ptr = move(*it); //auto statt std::unique_ptr<Fahrzeug>

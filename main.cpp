@@ -18,7 +18,7 @@ using namespace std;
 
 
 extern double dGlobaleZeit;
-double dZeitschritt=0.3;
+double dZeitschritt=0.1;
 //kleiner Epsilon-Wert um doubles miteinander vergleichen zu können
 double dEpsilon=0.001;
 
@@ -545,23 +545,23 @@ void vAufgabe_7()
 	bZeichneStrasse("W34","W43",85,5,iW34);
 	bZeichneStrasse("W44a","W44b",130,7,iW44);
 
-	K1->vAnnahme(std::make_unique<PKW>("PKW1",180, 8.0));
+	K1->vAnnahme(std::make_unique<PKW>("PKW1",80, 8.0));
 	K1->vAnnahme(std::make_unique<PKW>("PKW2",130, 6.0),5.0);
 	K1->vAnnahme(std::make_unique<PKW>("PKW3",200, 10.0));
-	K1->vAnnahme(std::make_unique<Fahrrad>("RAD1",25));
+	K1->vAnnahme(std::make_unique<Fahrrad>("RAD1",20));
 	K1->vAnnahme(std::make_unique<Fahrrad>("RAD2",35));
 
 	//Simulierschleife
-	for(dGlobaleZeit=0.0; dGlobaleZeit<=10.0; dGlobaleZeit+=dZeitschritt)
+	for(dGlobaleZeit=0.0; dGlobaleZeit<=20.0; dGlobaleZeit+=dZeitschritt)
 			{
 				//Verschachtelte Simulationsfunktion Kreuzung->Weg->Fahrzeug->PKW/Fahrrad
 				K1->vSimulieren();
 				K2->vSimulieren();
 				K3->vSimulieren();
-				K3->vSimulieren();
+				K4->vSimulieren();
 
 				vSetzeZeit(dGlobaleZeit);
-				vSleep(20);
+				vSleep(10);
 
 			}
 
